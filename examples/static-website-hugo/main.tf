@@ -2,8 +2,7 @@
 # DEPLOY AN EXAMPLE STATIC WEBSITE ON AWS.
 # -----------------------------------------------------------------------------
 provider "aws" {
-  region  = "us-east-1"
-  version = "~> 2.43"
+  region = "us-east-1"
 }
 
 module "static_website_hugo" {
