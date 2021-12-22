@@ -1,0 +1,67 @@
+# terraform-docs Configuration File
+#
+# This file (.terraform-docs.yml) is used by default by terraform-docs. It is
+# used to generate the README for this Terraform module.
+#
+# To generate documentation, execute the following:
+#
+#   ```
+#   terraform-docs .
+#   ```
+#
+# See the terraform-docs documentation for more information:
+#   https://github.com/terraform-docs/terraform-docs/tree/master/docs
+
+formatter: markdown
+
+header-from: main.tf
+footer-from: ""
+
+recursive:
+  enabled: false
+  path: .
+
+sections:
+  hide-all: false
+  hide: [requirements, providers, modules]
+  show-all: true
+  show: []
+
+output:
+  file: "README.md"
+  mode: replace
+  template: |-
+    # AWS Static Website Terraform Module
+
+    [![Maintained by Infrable.io](https://img.shields.io/badge/maintained%20by-infrable.io-6c71c4)](https://infrable.io/)
+
+    A Terraform module for creating static websites.
+
+    ## Terraform Module Documentation
+
+    <!-- BEGIN_TF_DOCS -->
+    {{ .Content }}
+    <!-- END_TF_DOCS -->
+
+output-values:
+  enabled: false
+  from: ""
+
+sort:
+  enabled: true
+  by: name
+
+settings:
+  anchor: true
+  color: true
+  default: true
+  description: false
+  escape: true
+  hide-empty: false
+  html: true
+  indent: 2
+  lockfile: true
+  read-comments: true
+  required: true
+  sensitive: true
+  type: true
