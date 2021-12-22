@@ -23,7 +23,7 @@ hugo
 aws s3 rm "s3://${S3_BUCKET_ROOT}" --recursive
 
 # sync files with S3
-aws s3 sync --acl "public-read" site/ "s3://${S3_BUCKET_ROOT}"
+aws s3 sync --acl "public-read" public/ "s3://${S3_BUCKET_ROOT}"
 
 # invalidate CloudFront cache
 aws cloudfront create-invalidation --distribution-id "${CF_DISTRIBUTION_ID}" --paths "/*"
