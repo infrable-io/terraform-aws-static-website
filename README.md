@@ -26,7 +26,7 @@ A Terraform module for creating static websites.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name of the website. This domain name must be purchased through<br>Amazon Route 53. The domain name should be of the form: <domain>.<tld>. | `string` | n/a | yes |
+| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name of the website. This domain name must be purchased through<br>Amazon Route 53. The domain name should be of the form: `domain.tld`. | `string` | n/a | yes |
 
 ## Outputs
 
