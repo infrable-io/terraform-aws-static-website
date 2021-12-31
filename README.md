@@ -1,6 +1,7 @@
 # AWS Static Website Terraform Module
 
-[![Maintained by Infrable.io](https://img.shields.io/badge/maintained%20by-infrable.io-6c71c4)](https://infrable.io/)
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/infrable-io/terraform-aws-static-website/blob/master/LICENSE)
+[![Maintained by Infrable.io](https://img.shields.io/badge/Maintained%20by-Infrable.io-000000)](https://infrable.io/)
 
 A Terraform module for creating static websites.
 
@@ -26,7 +27,7 @@ A Terraform module for creating static websites.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name of the website. This domain name must be purchased through<br>Amazon Route 53. The domain name should be of the form: `domain.tld`. | `string` | n/a | yes |
+| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name of the website. This domain name must be purchased through Amazon Route 53. The domain name should be of the form: `domain.tld`. | `string` | n/a | yes |
 
 ## Outputs
 
