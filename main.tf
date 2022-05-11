@@ -159,7 +159,7 @@ resource "aws_cloudfront_distribution" "distribution" {
   }
 
   origin {
-    domain_name = aws_s3_bucket.s3_root.website_endpoint
+    domain_name = aws_s3_bucket_website_configuration.s3_root.website_endpoint
     origin_id   = local.domain_name
 
     custom_origin_config {
