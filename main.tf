@@ -56,6 +56,7 @@ resource "aws_s3_bucket_acl" "s3_root" {
 }
 
 resource "aws_s3_bucket_website_configuration" "s3_root" {
+  count  = var.redirect_domain_name == "" ? 1 : 0
   bucket = aws_s3_bucket.s3_root.bucket
 
   index_document {
@@ -64,6 +65,16 @@ resource "aws_s3_bucket_website_configuration" "s3_root" {
 
   error_document {
     key = "404.html"
+  }
+}
+
+resource "aws_s3_bucket_website_configuration" "s3_root_redirect" {
+  count  = var.redirect_domain_name != "" ? 1 : 0
+  bucket = aws_s3_bucket.s3_root.bucket
+
+  redirect_all_requests_to {
+    host_name = var.redirect_domain_name
+    protocol  = "https"
   }
 }
 
@@ -159,7 +170,7 @@ resource "aws_cloudfront_distribution" "distribution" {
   }
 
   origin {
-    domain_name = aws_s3_bucket_website_configuration.s3_root.website_endpoint
+    domain_name = aws_s3_bucket.s3_root.website_endpoint
     origin_id   = local.domain_name
 
     custom_origin_config {
