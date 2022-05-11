@@ -32,6 +32,10 @@ data "aws_region" "current" {}
 # -----------------------------------------------------------------------------
 resource "aws_s3_bucket" "s3_logs" {
   bucket = "${local.domain_name}-logs"
+}
+
+resource "aws_s3_bucket_acl" "s3_logs" {
+  bucket = aws_s3_bucket.s3_logs.id
   acl    = "log-delivery-write"
 }
 
@@ -44,17 +48,30 @@ resource "aws_s3_bucket" "s3_logs" {
 # -----------------------------------------------------------------------------
 resource "aws_s3_bucket" "s3_root" {
   bucket = "${local.domain_name}-root"
+}
+
+resource "aws_s3_bucket_acl" "s3_root" {
+  bucket = aws_s3_bucket.s3_root.id
   acl    = "public-read"
+}
 
-  website {
-    index_document = "index.html"
-    error_document = "404.html"
+resource "aws_s3_bucket_website_configuration" "s3_root" {
+  bucket = aws_s3_bucket.s3_root.bucket
+
+  index_document {
+    suffix = "index.html"
   }
 
-  logging {
-    target_bucket = aws_s3_bucket.s3_logs.id
-    target_prefix = "s3/"
+  error_document {
+    key = "404.html"
   }
+}
+
+resource "aws_s3_bucket_logging" "s3_root" {
+  bucket = aws_s3_bucket.s3_root.id
+
+  target_bucket = aws_s3_bucket.s3_logs.id
+  target_prefix = "s3/"
 }
 
 # -----------------------------------------------------------------------------
