@@ -50,7 +50,28 @@ resource "aws_s3_bucket" "s3_root" {
   bucket = "${local.domain_name}-root"
 }
 
+resource "aws_s3_bucket_ownership_controls" "s3_root" {
+  bucket = aws_s3_bucket.s3_root.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "s3_root" {
+  bucket = aws_s3_bucket.s3_root.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
 resource "aws_s3_bucket_acl" "s3_root" {
+  depends_on = [
+    aws_s3_bucket_ownership_controls.s3_root,
+    aws_s3_bucket_public_access_block.s3_root,
+  ]
+
   bucket = aws_s3_bucket.s3_root.id
   acl    = "public-read"
 }
