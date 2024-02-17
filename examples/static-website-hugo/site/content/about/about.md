@@ -12,7 +12,7 @@ draft: false
 terraform init
 terraform validate
 terraform plan
-terraform deploy
+terraform apply
 ```
 
 **Note**: The Amazon CloudFront distribution can take up to 30 minutes to provision.
