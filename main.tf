@@ -34,6 +34,13 @@ resource "aws_s3_bucket" "s3_logs" {
   bucket = "${local.domain_name}-logs"
 }
 
+resource "aws_s3_bucket_ownership_controls" "s3_logs" {
+  bucket = aws_s3_bucket.s3_root.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
 resource "aws_s3_bucket_acl" "s3_logs" {
   bucket = aws_s3_bucket.s3_logs.id
   acl    = "log-delivery-write"
