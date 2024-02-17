@@ -179,6 +179,10 @@ resource "aws_acm_certificate_validation" "certificate_validation" {
 # Creates a distributed content delivery network using Amazon CloudFront.
 # -----------------------------------------------------------------------------
 resource "aws_cloudfront_distribution" "distribution" {
+  depends_on = [
+    aws_s3_bucket_acl.s3_logs
+  ]
+
   aliases             = [var.domain_name, "www.${var.domain_name}"]
   default_root_object = "index.html"
   enabled             = true
